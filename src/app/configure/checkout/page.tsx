@@ -13,8 +13,9 @@ if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 export default function Home() {
-  const searchParams = useSearchParams()
-  const amount = parseInt(searchParams.get('price') || '0', 10);
+  // const searchParams = useSearchParams()
+  // const amount = parseInt(searchParams.get('price') || '0', 10);
+  const amount = 10
 
   return (
     <div>
