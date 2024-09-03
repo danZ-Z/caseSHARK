@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import { Rnd } from 'react-rnd';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Steps from '@/components/Steps';
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -16,14 +16,15 @@ import { ChevronsRight } from 'lucide-react';
 
 
 
-interface Dimensions {
-  width: number;
-  height: number;
-}
+function CaseDetails () {
 
-const Page = () => {
+  interface Dimensions {
+    width: number;
+    height: number;
+  }
+
   const searchParams = useSearchParams();
-  const imageId = searchParams.get('id'); // Get the 'id' query parameter
+  const imageId = searchParams.get('id');
 
   const imageUrl = `https://utfs.io/f/${imageId}`;
 
@@ -74,14 +75,9 @@ const Page = () => {
     window.location.href = `/configure/preview/?${parameters.toString()}`
 
   }
-  
-
 
   return (
-    <div className="flex justify-center grainy-light">
-      <MaxWidthWrapper>
-        <Steps/>
-        <div className='flex relative z-20'>
+    <div className='flex relative z-20'>
           <div className='flex flex-col lg:flex-row w-full justify-center my-0 lg:my-20'>
             <div className='flex justify-center overflow-hidden bg-zinc-100 h-[36rem] w-full max-w-3xl border-2 border-dashed rounded-2xl border-gray-400 p-12'>
               <div className='relative z-0 '>
@@ -224,6 +220,18 @@ const Page = () => {
             </div>
           </div>
         </div>
+  )
+}
+
+const Page = () => {
+  
+  return (
+    <div className="flex justify-center grainy-light">
+      <MaxWidthWrapper>
+        <Steps/>
+        <Suspense fallback={<div>Loading...</div>}>
+          <CaseDetails/>
+          </Suspense>
       </MaxWidthWrapper>
     </div>
   );
