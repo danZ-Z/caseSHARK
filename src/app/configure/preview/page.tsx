@@ -48,7 +48,7 @@ function CaseDetails() {
           }}
         />
       </div>
-      <div className='flex flex-row w-full'>
+      <div className='flex flex-col md:flex-row w-full'>
         <div className='flex w-full px-10 flex-col'>
           <h2 className='font-bold text-3xl'>Your {model} case </h2>
           <div className='flex items-center py-2'>
@@ -84,7 +84,7 @@ function CaseDetails() {
           </div>
         </div>
 
-        <div className='w-full text-right flex flex-col gap-2 text-lg'>
+        <div className='w-full px-10 pt-5 md:p-0 md:text-right flex flex-col gap-2 text-lg'>
           <div className='w-full h-full flex flex-col border-b gap-5'>
             <h2 className='font-bold text-3xl'>Check your order</h2>
             <div className='flex flex-col gap-1 '>
@@ -99,7 +99,7 @@ function CaseDetails() {
                 href={`/configure/checkout/?${parameters.toString()}`}
                 className={buttonVariants({
                   size: 'lg',
-                  className: 'hidden sm:flex items-center gap-1'
+                  className: 'flex mx-auto md:m-0 items-center gap-1'
                 })}
               >
                 Check out<ChevronsRight className="ml-5 h-5 w-5" />
